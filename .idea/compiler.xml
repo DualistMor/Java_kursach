@@ -6,15 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="configs" />
         <module name="demo" />
-        <module name="eurekaService" />
         <module name="Java_lab" />
+        <module name="service-registry" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="configs" target="1.8" />
       <module name="demo" target="1.8" />
       <module name="eurekaService" target="1.8" />
-      <module name="Java_lab" target="1.8" />
+      <module name="Java_lab" target="1.5" />
+      <module name="service-registry" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

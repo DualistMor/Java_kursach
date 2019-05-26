@@ -3,8 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Java_lab.iml" filepath="$PROJECT_DIR$/Java_lab.iml" />
+      <module fileurl="file://$PROJECT_DIR$/configs/configs.iml" filepath="$PROJECT_DIR$/configs/configs.iml" />
       <module fileurl="file://$PROJECT_DIR$/ddLab1Services/demo.iml" filepath="$PROJECT_DIR$/ddLab1Services/demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/eurekaService/eurekaService.iml" filepath="$PROJECT_DIR$/eurekaService/eurekaService.iml" />
+      <module fileurl="file://D:/Java_labs/cargo-routing-backend/cargo-routing-backend/service-registry/service-registry.iml" filepath="D:/Java_labs/cargo-routing-backend/cargo-routing-backend/service-registry/service-registry.iml" />
     </modules>
   </component>
 </project>

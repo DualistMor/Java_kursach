@@ -5,11 +5,12 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/mvoLab1Services/ddLab1Services/pom.xml" />
-        <option value="$PROJECT_DIR$/eurekaService/pom.xml" />
+        <option value="D:/Java_labs/cargo-routing-backend/cargo-routing-backend/service-registry/pom.xml" />
+        <option value="$PROJECT_DIR$/configs/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_10" default="true" project-jdk-name="10" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
