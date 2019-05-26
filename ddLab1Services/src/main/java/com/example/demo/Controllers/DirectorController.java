@@ -10,6 +10,7 @@ import com.example.demo.Models.Movie;
 import com.example.demo.Services.MovieService;
 import com.example.demo.Services.DirectorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.hateoas.Resources;
@@ -37,6 +38,15 @@ public class DirectorController {
 
     private final DirectorResourcesAssembler assembler;
     private final MovieResourcesAssembler movieAssembler;
+
+    @Value("${prop.user.defaultname}")
+    private String defaultUsername;
+
+    @GetMapping("default/name")
+    public ResponseEntity<String> getDefaultUsername() {
+        return ResponseEntity.ok(defaultUsername);
+    }
+
 
     public DirectorController(DirectorResourcesAssembler assembler, MovieResourcesAssembler movieResourcesAssembler){
         this.assembler = assembler;
