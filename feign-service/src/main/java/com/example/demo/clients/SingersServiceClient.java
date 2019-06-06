@@ -15,7 +15,7 @@ import java.util.UUID;
 @FeignClient(serviceId = "services")
 public interface SingersServiceClient {
 
-    @RequestMapping(method = RequestMethod.GET, value = "default/name")
+    @RequestMapping(method = RequestMethod.GET, value = "/singers/default/name")
     ResponseEntity<String> getDefaultUsername();
 
 //    @RequestMapping(method = RequestMethod.GET)
