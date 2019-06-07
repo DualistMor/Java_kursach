@@ -47,7 +47,6 @@ public class SingerController {
         return ResponseEntity.ok(defaultUsername);
     }
 
-
     public SingerController(SingerResourcesAssembler singerResourcesAssembler, TrackResourcesAssembler trackResourcesAssembler) {
         this.singerResourcesAssembler = singerResourcesAssembler;
         this.trackResourcesAssembler = trackResourcesAssembler;
@@ -84,7 +83,7 @@ public class SingerController {
     }
 
     @PutMapping("/{singerId}")
-    public ResponseEntity<?> updateDirector(@RequestBody Singer updatedSinger, @PathVariable Integer singerId) throws URISyntaxException {
+    public ResponseEntity<?> updateSinger(@RequestBody Singer updatedSinger, @PathVariable Integer singerId) throws URISyntaxException {
         Singer updatedObj = singerService.getObjectById(singerId)
                 .map(singer -> {
                     singer.setName(updatedSinger.getName());
@@ -103,13 +102,13 @@ public class SingerController {
     }
 
     @DeleteMapping("/{singerId}/delete")
-    public ResponseEntity<?> deleteSingerWithTrack(@PathVariable Integer singerId) {
+    public ResponseEntity<?> deleteSingerWithTracks(@PathVariable Integer singerId) {
         singerService.deleteObject(singerId);
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{singerId}")
-    public ResponseEntity<?> deleteDirectorAndSaveMovies(@PathVariable Integer singerId) {
+    public ResponseEntity<?> deleteSingerAndSaveTracks(@PathVariable Integer singerId) {
         Singer singer = singerService.getObjectById(singerId)
                 .orElseThrow(() -> new SingerNotFoundException(singerId));
         Track[] tracks = new Track[singer.getTracks().size()];
@@ -123,7 +122,7 @@ public class SingerController {
             trackService.saveObject(track);
             singerService.saveObject(singer);
         }
-        return deleteSingerWithTrack(singerId);
+        return deleteSingerWithTracks(singerId);
     }
 
     @GetMapping("/{singerId}/tracks")

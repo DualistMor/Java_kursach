@@ -1,5 +1,6 @@
 package com.example.services.Models;
 
+import lombok.Data;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "singers")
 @EntityListeners(AuditingEntityListener.class)
@@ -25,30 +27,6 @@ public class Singer {
     //public void addTrack(Track movie){
     //tracks.add(movie);
     //}
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Track> getTracks() {
-        return tracks;
-    }
-
-    public void setTracks(List<Track> tracks) {
-        this.tracks = tracks;
-    }
 
     public boolean removeTrack(Track track) {
         return tracks.contains(track) && tracks.remove(track);
