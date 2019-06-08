@@ -16,15 +16,11 @@ import java.util.Map;
 
 @Configuration
 public class SpringAmqpConfig {
-
     @Bean
     public MessageConverter jsonMessageConverter()
     {
-        Jackson2JsonMessageConverter jsonMessageConverter = new Jackson2JsonMessageConverter();
-        jsonMessageConverter.setClassMapper(classMapper());
-        return jsonMessageConverter;
+        return new Jackson2JsonMessageConverter();
     }
-
 
     @Bean
     public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory)
@@ -32,16 +28,6 @@ public class SpringAmqpConfig {
         RabbitTemplate template = new RabbitTemplate(connectionFactory);
         template.setMessageConverter(jsonMessageConverter());
         return template;
-    }
-
-    @Bean
-    public DefaultClassMapper classMapper()
-    {
-        DefaultClassMapper classMapper = new DefaultClassMapper();
-        Map<String, Class<?>> idClassMapping = new HashMap<>();
-        idClassMapping.put("com.cargotrans.common.dto.UserDto", SingerDto.class);
-        classMapper.setIdClassMapping(idClassMapping);
-        return classMapper;
     }
 
     @Bean
@@ -61,22 +47,5 @@ public class SpringAmqpConfig {
                 .to(exchange)
                 .with(RabbitKeys.QUEUE_USERS_DELETE);
     }
-
-    @Bean
-    public Binding binding2(Queue queue, DirectExchange exchange) {
-        return BindingBuilder
-                .bind(queue)
-                .to(exchange)
-                .with(RabbitKeys.QUEUE_USER_EXIST);
-    }
-//
-//    @Bean
-//    public SimpleMessageListenerContainer springAmqpContainer(ConnectionFactory connectionFactory) {
-//        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-//        container.setConnectionFactory(connectionFactory);
-//        container.setQueueNames(RabbitKeys.QUEUE_USERS_DELETE);
-////        container.setMessageListener(listenerAdapter);
-//        return container;
-//    }
 
 }
