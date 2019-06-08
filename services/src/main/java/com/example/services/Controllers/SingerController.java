@@ -9,6 +9,9 @@ import com.example.services.Models.Singer;
 import com.example.services.Models.Track;
 import com.example.services.Services.TrackService;
 import com.example.services.Services.SingerService;
+import com.example.services.amqp.SingerAmqpProducer;
+import dto.SingerDto;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.hateoas.Resource;
@@ -17,6 +20,7 @@ import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.VndErrors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -35,6 +39,8 @@ public class SingerController {
     private SingerService singerService;
     @Autowired
     private TrackService trackService;
+    @Autowired
+    private SingerAmqpProducer singerAmqpProducer;
 
     private final SingerResourcesAssembler singerResourcesAssembler;
     private final TrackResourcesAssembler trackResourcesAssembler;
@@ -44,6 +50,8 @@ public class SingerController {
 
     @GetMapping("default/name")
     public ResponseEntity<String> getDefaultUsername() {
+        SingerDto sDto = new ModelMapper().map(singerService.getObjectById(21), SingerDto.class);
+        singerAmqpProducer.sendMessage(sDto);
         return ResponseEntity.ok(defaultUsername);
     }
 
