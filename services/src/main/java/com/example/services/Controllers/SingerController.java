@@ -96,6 +96,7 @@ public class SingerController {
                 .map(singer -> {
                     singer.setName(updatedSinger.getName());
                     singer.setTracks(updatedSinger.getTracks());
+                    singer.setDeleted(updatedSinger.isDeleted());
                     return singerService.saveObject(singer);
                 })
                 .orElseGet(() -> {

@@ -6,6 +6,8 @@ import dto.TrackDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
+import org.springframework.hateoas.VndErrors;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,14 +24,17 @@ public class SingerController {
         return singerServiceClient.getDefaultUsername();
     }
 
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
     @GetMapping
     public Resources<Resource<SingerDto>> getSingers() {
         return singerServiceClient.getSingers();
     }
 
     @GetMapping("/{singerId}")
-    public ResponseEntity<SingerDto> getSinger(@PathVariable Integer singerId) {
-        return singerServiceClient.getSinger(singerId);
+    public ResponseEntity<?> getSinger(@PathVariable Integer singerId) {
+        SingerDto singerDto = singerServiceClient.getSinger(singerId).getBody();
+        return singerDto.isDeleted() ?  new ResponseEntity<>(HttpStatus.NOT_FOUND)
+        : ResponseEntity.ok(singerDto);
     }
 
     @PostMapping
@@ -44,9 +49,11 @@ public class SingerController {
 
     @DeleteMapping("/{singerId}/delete")
     public ResponseEntity<?> deleteSingerWithTrack(@PathVariable Integer singerId) {
-        return singerServiceClient.deleteSingerWithTracks(singerId);
+        SingerDto singerDto = singerServiceClient.getSinger(singerId).getBody();
+        singerDto.setDeleted(true);
+        singerServiceClient.updateSinger(singerDto, singerId).getBody();
+        return ResponseEntity.noContent().build();
     }
-
     @DeleteMapping("/{singerId}")
     public ResponseEntity<?> deleteSingerAndSaveTracks(@PathVariable Integer singerId) {
         return singerServiceClient.deleteSingerAndSaveTracks(singerId);

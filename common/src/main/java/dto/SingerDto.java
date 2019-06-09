@@ -14,4 +14,5 @@ public class SingerDto {
     int id;
     String name;
     List<TrackDto> tracks;
+    boolean isDeleted;
 }

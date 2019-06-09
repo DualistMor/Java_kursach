@@ -24,6 +24,10 @@ public class Singer {
     @OneToMany(cascade = {CascadeType.ALL})
     private List<Track> tracks = new ArrayList<>();
 
+    @NotNull
+    @Column(columnDefinition = "Boolean default 'false'")
+    private boolean isDeleted;
+
     //public void addTrack(Track movie){
     //tracks.add(movie);
     //}
