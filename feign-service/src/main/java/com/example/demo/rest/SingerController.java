@@ -54,6 +54,7 @@ public class SingerController {
         singerServiceClient.updateSinger(singerDto, singerId).getBody();
         return ResponseEntity.noContent().build();
     }
+
     @DeleteMapping("/{singerId}")
     public ResponseEntity<?> deleteSingerAndSaveTracks(@PathVariable Integer singerId) {
         return singerServiceClient.deleteSingerAndSaveTracks(singerId);

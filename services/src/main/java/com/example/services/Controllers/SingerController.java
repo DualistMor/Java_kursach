@@ -50,8 +50,6 @@ public class SingerController {
 
     @GetMapping("default/name")
     public ResponseEntity<String> getDefaultUsername() {
-        SingerDto sDto = new ModelMapper().map(singerService.getObjectById(21), SingerDto.class);
-        singerAmqpProducer.sendMessage(sDto);
         return ResponseEntity.ok(defaultUsername);
     }
 
@@ -85,6 +83,10 @@ public class SingerController {
     @PostMapping
     public ResponseEntity<?> createSinger(@RequestBody Singer newSinger) throws URISyntaxException {
         Resource<Singer> resource = singerResourcesAssembler.toResource(singerService.saveObject(newSinger));
+        //RabbitMQ changes created users name
+        SingerDto sDto = new ModelMapper().map(singerService.getObjectById(newSinger.getId()).get(), SingerDto.class);
+        singerAmqpProducer.sendMessage(sDto);
+        //
         return ResponseEntity
                 .created(new URI(resource.getId().expand().getHref()))
                 .body(resource);

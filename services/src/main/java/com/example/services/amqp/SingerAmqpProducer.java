@@ -13,7 +13,7 @@ public class SingerAmqpProducer {
     private final RabbitTemplate rabbitTemplate;
 
     public void sendMessage(SingerDto userDto) {
-        rabbitTemplate.convertAndSend(RabbitKeys.QUEUE_USERS_DELETE, userDto);
+        rabbitTemplate.convertAndSend(RabbitKeys.QUEUE_SINGERS_CHANGE_NAME, userDto);
     }
 
 }
