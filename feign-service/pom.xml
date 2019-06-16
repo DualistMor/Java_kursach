@@ -122,6 +122,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>feign_service</finalName>
     </build>
 
 </project>
