@@ -1,6 +1,7 @@
 package com.example.services.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -14,6 +15,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "tracks")
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor
+@AllArgsConstructor
 public class Track {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

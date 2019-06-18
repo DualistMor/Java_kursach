@@ -1,6 +1,9 @@
 package com.example.services.Models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -12,6 +15,8 @@ import java.util.List;
 @Entity
 @Table(name = "singers")
 @EntityListeners(AuditingEntityListener.class)
+@NoArgsConstructor
+@AllArgsConstructor
 public class Singer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
