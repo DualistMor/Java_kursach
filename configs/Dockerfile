@@ -1,3 +1,3 @@
 FROM openjdk:8
-COPY target/configs.jar configs.jar
+COPY configs/target/configs.jar configs.jar
 ENTRYPOINT ["java", "-Dspring.profiles.active=docker", "-jar", "configs.jar"]

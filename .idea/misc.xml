@@ -3,12 +3,13 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/mvoLab1Services/ddLab1Services/pom.xml" />
         <option value="D:/Java_labs/cargo-routing-backend/cargo-routing-backend/service-registry/pom.xml" />
         <option value="$PROJECT_DIR$/configs/pom.xml" />
         <option value="$PROJECT_DIR$/services/pom.xml" />
         <option value="$PROJECT_DIR$/feign-service/pom.xml" />
+        <option value="$PROJECT_DIR$/service-registry/pom.xml" />
+        <option value="$PROJECT_DIR$/common/pom.xml" />
       </list>
     </option>
   </component>
