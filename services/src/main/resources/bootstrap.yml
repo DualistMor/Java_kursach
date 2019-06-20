@@ -1,0 +1,33 @@
+# Loco yaml export: Symfony YAML object
+# Project: bootstrap.properties conversion
+# Release: Working copy
+# Locale: uk-UA, Ukrainian (Ukraine)
+# Exported by: Unregistered user
+# Exported at: Thu, 20 Jun 2019 14:59:52 +0300
+---
+spring:
+  application:
+    name: services
+  cloud:
+    config:
+      uri: http://localhost:8088
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+---
+spring:
+  profiles: docker
+  cloud:
+    config:
+      uri: http://configs:8088
+  datasource:
+    url: jdbc:postgresql://postgresdb:5432/mdservice_1
+  rabbitmq:
+    host: rabbitmq
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://service-registry:8063/eureka/
+

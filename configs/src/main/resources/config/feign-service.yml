@@ -1,0 +1,24 @@
+# Loco yaml export: Symfony YAML object
+# Project: feign-service.properties conversion
+# Release: Working copy
+# Locale: uk-UA, Ukrainian (Ukraine)
+# Exported by: Unregistered user
+# Exported at: Thu, 20 Jun 2019 14:56:06 +0300
+---
+server:
+  port: "8095"
+spring:
+  application:
+    name: feign-service
+  rabbitmq:
+    host: localhost
+    port: "5672"
+    username: guest
+    password: guest
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8063/eureka/
+prop:
+  username: Useruser
+...

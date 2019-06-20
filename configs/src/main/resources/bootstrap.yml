@@ -1,0 +1,17 @@
+# Loco yaml export: Symfony YAML object
+# Project: bootstrap.properties conversion
+# Release: Working copy
+# Locale: uk-UA, Ukrainian (Ukraine)
+# Exported by: Unregistered user
+# Exported at: Thu, 20 Jun 2019 14:55:37 +0300
+---
+server:
+  port: "8088"
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/DualistMor/configs.git
+          searchPaths: configs/src/main/resources/config
+...
