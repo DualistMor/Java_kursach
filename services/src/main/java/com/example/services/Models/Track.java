@@ -9,6 +9,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -25,8 +27,7 @@ public class Track {
     @NotNull
     private String name;
 
-    @NotNull
-    private byte[] coverArt;
+    private CoverArt coverArt;
 
     public int getId() {
         return id;

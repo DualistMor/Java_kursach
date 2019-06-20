@@ -2,10 +2,13 @@ package com.example.services.Controllers;
 
 import com.example.services.Assemblers.TrackResourcesAssembler;
 import com.example.services.Assemblers.SingerResourcesAssembler;
+import com.example.services.Exceptions.CoverArtNotFoundException;
 import com.example.services.Exceptions.SingerNotFoundException;
 import com.example.services.Exceptions.TrackNotFoundException;
+import com.example.services.Models.CoverArt;
 import com.example.services.Models.Singer;
 import com.example.services.Models.Track;
+import com.example.services.Services.CoverArtService;
 import com.example.services.Services.SingerService;
 import com.example.services.Services.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +37,8 @@ public class TrackController {
     private TrackService trackService;
     @Autowired
     SingerService singerService;
+    @Autowired
+    CoverArtService coverArtService;
 
     private final TrackResourcesAssembler trackResourcesAssembler;
     private final SingerResourcesAssembler singerResourcesAssembler;
@@ -70,6 +75,27 @@ public class TrackController {
         return ResponseEntity
                 .created(new URI(resource.getId().expand().getHref()))
                 .body(resource);
+    }
+
+    @GetMapping("/{trackId}/{coverArtId}")
+    private void addCoverArtToTrack(@PathVariable int trackId, @PathVariable int coverArtId) {
+        Track track = trackService.getObjectById(trackId).get();
+        if (track == null) {
+            throw new TrackNotFoundException(trackId);
+        }
+        CoverArt coverArt = coverArtService.getObjectById(coverArtId).get();
+        if (coverArt == null) {
+            throw new CoverArtNotFoundException(coverArtId);
+        }
+        track.setCoverArt(coverArt);
+        trackService.updateObject(track, trackId);
+    }
+
+    @GetMapping("/{trackId}/remove/art")
+    private void removeCoverArtFromTrack(@PathVariable int trackId) {
+        Track track = trackService.getObjectById(trackId).get();
+        track.setCoverArt(null);
+        trackService.updateObject(track, trackId);
     }
 
     @PutMapping("/{trackId}")

@@ -9,7 +9,6 @@ import com.example.services.Models.Singer;
 import com.example.services.Models.Track;
 import com.example.services.Services.TrackService;
 import com.example.services.Services.SingerService;
-import com.example.services.amqp.SingerAmqpProducer;
 import dto.SingerDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,19 +38,9 @@ public class SingerController {
     private SingerService singerService;
     @Autowired
     private TrackService trackService;
-    @Autowired
-    private SingerAmqpProducer singerAmqpProducer;
 
     private final SingerResourcesAssembler singerResourcesAssembler;
     private final TrackResourcesAssembler trackResourcesAssembler;
-
-    @Value("${prop.user.defaultname}")
-    private String defaultUsername;
-
-    @GetMapping("default/name")
-    public ResponseEntity<String> getDefaultUsername() {
-        return ResponseEntity.ok(defaultUsername);
-    }
 
     public SingerController(SingerResourcesAssembler singerResourcesAssembler, TrackResourcesAssembler trackResourcesAssembler) {
         this.singerResourcesAssembler = singerResourcesAssembler;
@@ -85,7 +74,6 @@ public class SingerController {
         Resource<Singer> resource = singerResourcesAssembler.toResource(singerService.saveObject(newSinger));
         //RabbitMQ changes created users name
         SingerDto sDto = new ModelMapper().map(singerService.getObjectById(newSinger.getId()).get(), SingerDto.class);
-        singerAmqpProducer.sendMessage(sDto);
         //
         return ResponseEntity
                 .created(new URI(resource.getId().expand().getHref()))
@@ -98,7 +86,6 @@ public class SingerController {
                 .map(singer -> {
                     singer.setName(updatedSinger.getName());
                     singer.setTracks(updatedSinger.getTracks());
-                    singer.setDeleted(updatedSinger.isDeleted());
                     return singerService.saveObject(singer);
                 })
                 .orElseGet(() -> {

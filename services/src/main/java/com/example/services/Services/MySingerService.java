@@ -40,7 +40,6 @@ public class MySingerService implements SingerService {
                     singer.setName(newObject.getName());
                     singer.setTracks(newObject.getTracks());
                     singer.setId(newObject.getId());
-                    singer.setDeleted(newObject.isDeleted());
                     return singerRepository.save(singer);
                 })
                 .orElseGet(() -> {
