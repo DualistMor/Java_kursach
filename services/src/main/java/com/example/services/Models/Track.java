@@ -27,6 +27,7 @@ public class Track {
     @NotNull
     private String name;
 
+    @Column(name = "cover_a")
     private CoverArt coverArt;
 
     public int getId() {

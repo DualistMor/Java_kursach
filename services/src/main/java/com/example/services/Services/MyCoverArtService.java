@@ -41,7 +41,6 @@ public class MyCoverArtService implements CoverArtService {
                 .map(coverArt -> {
                     coverArt.setCoverArt(newObject.getCoverArt());
                     coverArt.setId(newObject.getId());
-                    coverArt.addTrack(newObject.getTrackId());
                     return coverArtRepository.save(coverArt);
                 })
                 .orElseGet(() -> {

@@ -1,0 +1,94 @@
+version: '3.7'
+
+services:
+
+  postgresdb:
+    container_name: postgresdb
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_HOST=postgresdb
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=mdservice_1
+    networks:
+      - default
+
+#  advertsdb:
+#    container_name: advertsdb
+#    image: postgres
+#    ports:
+#      - "5433:5432"
+#    environment:
+#      - POSTGRES_PASSWORD=postgres
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_DB=advertsdb
+#    networks:
+#      - default
+#
+#  rabbitmq:
+#    container_name: rabbitmq
+#    image: rabbitmq
+#    environment:
+#      - RABBITMQ_DEFAULT_USER=guest
+#      - RABBITMQ_DEFAULT_PASS=guest
+#    ports:
+#      - "5672:5672"
+#      - "15672:15672"
+#    networks:
+#      - default
+#
+#  config-server:
+#    depends_on:
+#      - rabbitmq
+#    container_name: config-server
+#    build:
+#      context: ./config-service
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8088:8088"
+#    networks:
+#      - default
+#
+#  discovery-service:
+#    depends_on:
+#      - config-server
+#    container_name: discovery-service
+#    build:
+#      context: ./service-registry
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8061:8061"
+#    networks:
+#      - default
+#
+#  users-service:
+#    depends_on:
+#      - config-server
+#      - discovery-service
+#      - rabbitmq
+#      - usersdb
+#    container_name: users-service
+#    build:
+#      context: ./users-service
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8093:8093"
+#    networks:
+#      - default
+#
+#  adverts-service:
+#    depends_on:
+#      - config-server
+#      - discovery-service
+#      - rabbitmq
+#      - advertsdb
+#    container_name: adverts-service
+#    build:
+#      context: ./adverts-service
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8094:8094"
+#    networks:
+#      - default
