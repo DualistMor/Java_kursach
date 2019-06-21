@@ -21,4 +21,4 @@ security:
 
 spring:
   application:
-    name: weapons-client
+    name: singers-client

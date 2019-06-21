@@ -2,15 +2,15 @@ version: '3.7'
 
 services:
 
-  mylovedb:
-    container_name: mylovedb
+  artcoversdb:
+    container_name: artcoversdb
     image: postgres
     ports:
       - "5432:5432"
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
-      - POSTGRES_DB=mylovedb
+      - POSTGRES_DB=artcoversdb
     networks:
       - default
 

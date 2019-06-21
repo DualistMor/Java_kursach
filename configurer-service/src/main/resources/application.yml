@@ -11,7 +11,7 @@ spring:
     name: configurers-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/mylovedb
+    url: jdbc:postgresql://localhost:5432/artcoversdb
     username: postgres
     password: postgres
   jpa:

@@ -8,10 +8,10 @@
         <version>2.1.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.weapon</groupId>
-    <artifactId>weapon-configurator</artifactId>
+    <groupId>com.singer</groupId>
+    <artifactId>singer-configurator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>weapon-configurator</name>
+    <name>singer-configurator</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
